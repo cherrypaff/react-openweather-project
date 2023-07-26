@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 export const CityCardContainer = styled.div<{ positiveTemp: boolean }>`
   position: relative;
@@ -32,8 +32,8 @@ export const CardRowContainer = styled.div<{topRow?: boolean}>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: ${({ topRow }) => (topRow ? 'flex-start' : 'center')};
-  margin: ${({ topRow }) => (topRow ? '0 0 20px 0' : '30px 0 0 0')};
+  align-items: ${({ topRow }) => (topRow ? "flex-start" : "center")};
+  margin: ${({ topRow }) => (topRow ? "0 0 20px 0" : "30px 0 0 0")};
 `
 
 export const GroupContainer = styled.div`

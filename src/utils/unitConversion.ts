@@ -1,7 +1,7 @@
 export function celciusToFahrenheit(c: number) {
-  return Math.round(c * (9 / 5) + 32);
+  return Math.round(c * (9 / 5) + 32)
 }
 
 export function fahrenheitToCelcius(f: number) {
-  return Math.round(((f - 32) * 5) / 9);
+  return Math.round(((f - 32) * 5) / 9)
 }

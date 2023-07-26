@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 // ToDo grid container
 export const HomePageContainer = styled.div`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   margin-top: 100px;
   margin-bottom: 100px;
-`;
+`
 
 export const SearchElement = styled.div`
   position: relative;
@@ -19,7 +19,7 @@ export const SearchElement = styled.div`
   z-index: 1;
   margin-right: 30px;
   width: 600px;
-`;
+`
 
 export const SearchInput = styled.input`
   margin-left: 1rem;
@@ -33,7 +33,7 @@ export const SearchInput = styled.input`
   }
   &::placeholder {
   }
-`;
+`
 
 export const AutoCompletion = styled.div`
     position: absolute;
@@ -82,5 +82,4 @@ export const AddButton = styled.button`
   width: 120px;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
 `
-
 

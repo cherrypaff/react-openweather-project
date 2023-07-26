@@ -1,9 +1,9 @@
-import { useClickOutside } from "../../hooks/use-click-outside";
+import { useClickOutside } from "hooks/use-click-outside"
 import { useRef, useState } from "react"
 import * as React from "react"
 import styled from "styled-components"
-import { Icons } from "../CurrentWeather/Icons";
-import {mainTheme} from "../../theme";
+import { Icons } from "components/CurrentWeather/Icons"
+import { mainTheme } from "theme"
 
 const Placeholder = styled.p`
     color: #b3b3b3;
@@ -85,57 +85,57 @@ export type SelectInputProps<T extends Value> = {
 }
 
 export const SelectDropdown = <T extends Value = Value>({
-         value,
-         placeholder,
-         onChange,
-         options,
-         error,
-         onBlur,
-         className,
-         withoutBorder,
-         onClick,
-    }: SelectInputProps<T>) => {
+  value,
+  placeholder,
+  onChange,
+  options,
+  error,
+  onBlur,
+  className,
+  withoutBorder,
+  onClick,
+}: SelectInputProps<T>) => {
 
-    const [isOpen, changeOpen] = useState(false)
+  const [isOpen, changeOpen] = useState(false)
 
-    const dropdownItems = options.map((item, index) => {
-        return (
-            <DropdownItem key={index} onClick={() => onChange(item.value)}>
-                {item.label}
-            </DropdownItem>
-        )
-    })
-
-    let selectedItem = options.find(item => item.value === value)
-    // @ts-ignore
-    selectedItem = selectedItem || {label: value, value}
-
-    const selectBoxRef = useRef<HTMLDivElement>(null)
-
-    useClickOutside(selectBoxRef, () => {
-        changeOpen(false)
-    })
-
+  const dropdownItems = options.map((item, index) => {
     return (
-        <SelectBox
-            isOpen={isOpen}
-            error={error}
-            ref={selectBoxRef}
-            placeholder={placeholder}
-            className={className}
-            onClick={() => {
-                onClick && onClick()
-                const newValue = !isOpen
-                changeOpen(newValue)
-                if (!newValue && onBlur) {
-                    onBlur()
-                }
-            }}
-            withoutBorder={withoutBorder}
-        >
-            {selectedItem && !!selectedItem.value ? <><Icons fill={mainTheme.grayColor} name={'globe'} /><Label>{selectedItem.label}</Label></> : <Placeholder>{placeholder}</Placeholder>}
-            <Icons fill={mainTheme.grayColor} isRotated={isOpen} name={'arrow'} />
-            {isOpen && <Dropdown>{dropdownItems}</Dropdown>}
-        </SelectBox>
+      <DropdownItem key={index} onClick={() => onChange(item.value)}>
+        {item.label}
+      </DropdownItem>
     )
+  })
+
+  let selectedItem = options.find(item => item.value === value)
+  // @ts-ignore
+  selectedItem = selectedItem || {label: value, value}
+
+  const selectBoxRef = useRef<HTMLDivElement>(null)
+
+  useClickOutside(selectBoxRef, () => {
+    changeOpen(false)
+  })
+
+  return (
+    <SelectBox
+      isOpen={isOpen}
+      error={error}
+      ref={selectBoxRef}
+      placeholder={placeholder}
+      className={className}
+      onClick={() => {
+        onClick && onClick()
+        const newValue = !isOpen
+        changeOpen(newValue)
+        if (!newValue && onBlur) {
+          onBlur()
+        }
+      }}
+      withoutBorder={withoutBorder}
+    >
+      {selectedItem && !!selectedItem.value ? <><Icons fill={mainTheme.grayColor} name={"globe"} /><Label>{selectedItem.label}</Label></> : <Placeholder>{placeholder}</Placeholder>}
+      <Icons fill={mainTheme.grayColor} isRotated={isOpen} name={"arrow"} />
+      {isOpen && <Dropdown>{dropdownItems}</Dropdown>}
+    </SelectBox>
+  )
 }

@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
-import { ThemeProvider } from 'styled-components'
-import { GlobalStyles } from './app.styled'
-import { Home } from './pages/Home'
-import { mainTheme } from './theme'
+import React, { useEffect } from "react"
+import { ThemeProvider } from "styled-components"
+import { GlobalStyles } from "app.styled"
+import { Home } from "pages/Home"
+import { mainTheme } from "theme"
 import { useDispatch, useSelector } from "react-redux"
-import { AppStore } from "./store/store"
-import { i18n } from "./i18n/i18n"
-import { fetchMyLocationWeather } from "./store/fetchWeather"
+import { addToast } from "store/reducers/appReducer"
+import { AppStore } from "store/store"
+import { i18n } from "i18n/i18n"
+import { fetchMyLocationWeather } from "store/fetchWeather"
 import dayjs from "dayjs"
 import "dayjs/locale/ru"
 import "dayjs/locale/en"
@@ -19,12 +20,12 @@ dayjs.extend(timezone)
 
 const App: React.FC = () => {
   const { language } = useSelector((store: AppStore) => ({
-      language: store.app.language,
+    language: store.app.language,
   }))
   const dispatch = useDispatch()
 
   const showPosition = (position: GeolocationPosition) => {
-     dispatch(fetchMyLocationWeather(position))
+    dispatch(fetchMyLocationWeather(position))
   }
 
   useEffect(() => {
@@ -32,9 +33,9 @@ const App: React.FC = () => {
     i18n.changeLanguage(language)
 
     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(showPosition)
+      navigator.geolocation.getCurrentPosition(showPosition)
     } else {
-       alert('Geolocation is not supported by this browser.')
+      dispatch(addToast("Geolocation is not supported by this browser."))
     }
   }, [])
 
@@ -43,7 +44,7 @@ const App: React.FC = () => {
       <GlobalStyles />
       <Home />
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

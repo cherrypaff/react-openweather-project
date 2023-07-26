@@ -1,11 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-import { Theme } from './theme';
+import { createGlobalStyle } from "styled-components"
 
-declare module 'styled-components' {
-  /* tslint:disable */
-  export interface DefaultTheme extends Theme {}
-}
-
+// disable browser default styles
 export const GlobalStyles = createGlobalStyle`
 *,
 *::before,
@@ -34,4 +29,4 @@ body {
   margin: auto 0;
   padding: 0 1rem;
 }
-`;
+`
